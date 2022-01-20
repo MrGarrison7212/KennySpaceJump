@@ -8,7 +8,16 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML Works");
+	sf::RenderWindow window(sf::VideoMode(400, 533), "Kenny Space Jump !");
+	window.setFramerateLimit(60);
+
+	//adding resources
+	sf::Texture background_tex, platform_tex, kenny_tex;
+
+	background_tex.loadFromFile("Data/background.png");
+	platform_tex.loadFromFile("Data/platform.png");
+	kenny_tex.loadFromFile("Data/kenny.png");
+
 
 	while (window.isOpen()) {
 
