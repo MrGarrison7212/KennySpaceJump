@@ -6,8 +6,14 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
+struct point {
+	int x, y;
+};
+
 int main()
 {
+	srand(time(0));
+
 	sf::RenderWindow window(sf::VideoMode(400, 533), "Kenny Space Jump !");
 	window.setFramerateLimit(60);
 
@@ -18,16 +24,28 @@ int main()
 	platform_tex.loadFromFile("Data/platform.png");
 	kenny_tex.loadFromFile("Data/kenny.png");
 
+	sf::Sprite background(background_tex), platform(platform_tex), kenny(kenny_tex);
+
+	point platforms[20];
+
+	for (int i = 0; i < 10; i++) {
+		platforms[i].x = rand() % 400;
+		platforms[i].y = rand() % 533;
+	}
 
 	while (window.isOpen()) {
 
 		sf::Event event;
 		while (window.pollEvent(event)) {
 
-
 		}
-
 		window.clear();
+		window.draw(background);
+		window.draw(kenny);
+		for (int i = 0; i < 10; i++) {
+			platform.setPosition(platforms[i].x, platforms[i].y);
+			window.draw(platform);
+		}
 		window.display();
 	}
 
