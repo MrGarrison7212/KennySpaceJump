@@ -53,6 +53,14 @@ int main()
 		
 		//moving
 
+		//side moves
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+			x += 3;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+			x -= 3;
+		}
+
 		// jump
 		dy += 0.2;
 		y += dy;
