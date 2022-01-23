@@ -33,6 +33,10 @@ int main()
 		platforms[i].y = rand() % 533;
 	}
 
+	//coordinates
+	int x = 100, y = 100, h = 200;
+	float dx = 0, dy = 0;
+
 	while (window.isOpen()) {
 
 		sf::Event event;
@@ -44,7 +48,19 @@ int main()
 				window.close();
 			}
 		}
+
 		window.clear();
+		
+		//moving
+
+		// jump
+		dy += 0.2;
+		y += dy;
+		if (y > 500) {
+			dy = -10;
+		}
+		kenny.setPosition(x, y);
+		//draw elements
 		window.draw(background);
 		window.draw(kenny);
 		for (int i = 0; i < 10; i++) {
