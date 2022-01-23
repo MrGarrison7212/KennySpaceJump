@@ -20,7 +20,7 @@ int main()
 	//adding resources
 	sf::Texture background_tex, platform_tex, kenny_tex;
 
-	background_tex.loadFromFile("Data/background.png");
+	background_tex.loadFromFile("Data/background2.jpg");
 	platform_tex.loadFromFile("Data/platform.png");
 	kenny_tex.loadFromFile("Data/kenny.png");
 
