@@ -54,10 +54,10 @@ int main()
 		//moving
 
 		//side moves
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
 			x += 3;
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
 			x -= 3;
 		}
 
@@ -66,6 +66,13 @@ int main()
 		y += dy;
 		if (y > 500) {
 			dy = -10;
+		}
+		//collision with paddles
+		for (int i = 0; i < 10; i++) {
+			if ((x + 50 > platforms[i].x) && (x + 20 < platforms[i].x + 68) &&
+				(y + 70 > platforms[i].y) && (y + 70 < platforms[i].y + 14)) {
+				dy = -10;
+			}
 		}
 		kenny.setPosition(x, y);
 		//draw elements
