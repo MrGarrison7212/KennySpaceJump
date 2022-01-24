@@ -67,7 +67,19 @@ int main()
 		if (y > 500) {
 			dy = -10;
 		}
-		//collision with paddles
+		//screen progressing and making new platforms
+		if (y < h) {
+			for (int i = 0; i < 10; i++) {
+				y = h;
+				platforms[i].y = platforms[i].y - dy;
+				if (platforms[i].y > 533) {
+					platforms[i].y = 0;
+					platforms[i].x = rand() % 400;
+				}
+			}
+		}
+
+		//collision with platforms
 		for (int i = 0; i < 10; i++) {
 			if ((x + 50 > platforms[i].x) && (x + 20 < platforms[i].x + 68) &&
 				(y + 70 > platforms[i].y) && (y + 70 < platforms[i].y + 14)) {
