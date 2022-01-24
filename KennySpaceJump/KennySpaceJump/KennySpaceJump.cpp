@@ -5,6 +5,9 @@
 #include "pch.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <string>
+#include <sstream>
+
 
 struct point {
 	int x, y;
@@ -19,10 +22,19 @@ int main()
 
 	//adding resources
 	sf::Texture background_tex, platform_tex, kenny_tex;
+	//points
+	sf::Font font;
+	sf::Text pointsText;
 
 	background_tex.loadFromFile("Data/background2.jpg");
 	platform_tex.loadFromFile("Data/platform.png");
 	kenny_tex.loadFromFile("Data/kenny.png");
+
+	font.loadFromFile("Data/SpaceMission-rgyw9.otf");
+	pointsText.setPosition(270, 20.f);
+	pointsText.setFont(font);
+	pointsText.setCharacterSize(22);
+	pointsText.setFillColor(sf::Color::White);
 
 	sf::Sprite background(background_tex), platform(platform_tex), kenny(kenny_tex);
 
@@ -36,6 +48,10 @@ int main()
 	//coordinates
 	int x = 100, y = 100, h = 200;
 	float dx = 0, dy = 0;
+
+	//points
+	unsigned points = 0;
+
 
 	while (window.isOpen()) {
 
@@ -84,12 +100,19 @@ int main()
 			if ((x + 50 > platforms[i].x) && (x + 20 < platforms[i].x + 68) &&
 				(y + 70 > platforms[i].y) && (y + 70 < platforms[i].y + 14)) {
 				dy = -10;
+				// adding points by 1 everytime Kenny jumps on platform
+				points++;
 			}
 		}
 		kenny.setPosition(x, y);
+		// points part
+		std::stringstream ss;
+		ss << " Points: " << points;
+		pointsText.setString(ss.str());
 		//draw elements
 		window.draw(background);
 		window.draw(kenny);
+		window.draw(pointsText);
 		for (int i = 0; i < 10; i++) {
 			platform.setPosition(platforms[i].x, platforms[i].y);
 			window.draw(platform);
